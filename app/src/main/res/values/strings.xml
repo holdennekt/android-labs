@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">mobile-labs</string>
+    <string-array name="authors">
+        <item>Jorge Orwell</item>
+        <item>Rey Bradbury</item>
+        <item>Aizek Asimov</item>
+        <item>Oldos Haksli</item>
+    </string-array>
+    <string name="ok">OK</string>
+    <string name="from_1900_to_1950">1900–1950</string>
+    <string name="from_1950_to_2000">1950–2000</string>
+    <string name="output_template">You\'ve picked %1$s and %2$s</string>
+</resources>
