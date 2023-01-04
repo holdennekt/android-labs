@@ -10,4 +10,7 @@
     <string name="from_1900_to_1950">1900–1950</string>
     <string name="from_1950_to_2000">1950–2000</string>
     <string name="output_template">You\'ve picked %1$s and %2$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="show_answers">show answers</string>
 </resources>
