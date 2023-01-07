@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mobilelabs" >
         <activity
-            android:name=".Answers"
+            android:name=".AnswersActivity"
             android:exported="false"
             android:label="@string/title_activity_answers"
             android:theme="@style/Theme.Mobilelabs.NoActionBar" />
