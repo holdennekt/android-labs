@@ -3,7 +3,6 @@ package com.example.mobile_labs
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.*
 import androidx.fragment.app.commit
 import java.io.File
@@ -14,14 +13,16 @@ interface OnOKButtonClickedListener {
 
 class MainActivity : AppCompatActivity(), OnOKButtonClickedListener {
 
-    private val outputTextFragment = OutputTextFragment()
     private lateinit var file: File
+    private lateinit var databaseHelper: DatabaseHelper
+    private val outputTextFragment = OutputTextFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         file = File(filesDir, "answers")
+        databaseHelper = DatabaseHelper.getInstance(this)
 
         if (savedInstanceState == null) {
             supportFragmentManager.commit {
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity(), OnOKButtonClickedListener {
 
         val showAnswers = findViewById<Button>(R.id.show_answers)
         showAnswers.setOnClickListener {
-            val intent = Intent(this, Answers::class.java)
+            val intent = Intent(this, AnswersActivity::class.java)
             intent.putExtra("filename", file.name)
             startActivity(intent)
         }
@@ -48,12 +49,8 @@ class MainActivity : AppCompatActivity(), OnOKButtonClickedListener {
         }
         val outputText = getString(R.string.output_template, author, years.text.toString())
         outputTextFragment.setOutputText(outputText)
-        val fileOutput = getString(R.string.output_template_file, author, years.text.toString())
-        openFileOutput(file.name, MODE_APPEND).bufferedWriter().use {
-            it.write(fileOutput)
-            it.newLine()
-        }
-        val text = "New answer has been written to file"
+        databaseHelper.insertAnswer(author, years.text.toString())
+        val text = "New answer has been written to DB"
         Toast.makeText(applicationContext, text, duration).show()
     }
 }
